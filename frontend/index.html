@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love! 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Hearts Animation -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button id="musicToggle" class="music-btn">
+            🎵 <span id="musicStatus">Play Music</span>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#letter" class="nav-link">Love Letter</a>
+        <a href="#wishes" class="nav-link">Wishes</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Section 1: Birthday Greeting -->
+        <section id="home" class="section greeting-section">
+            <div class="greeting-content">
+                <h1 class="greeting-title animate-fade-in">
+                    Happy Birthday
+                    <span class="gradient-text">My Beautiful Wife!</span>
+                </h1>
+                <p class="greeting-subtitle animate-fade-in delay-1">
+                    To the love of my life, my best friend, and my everything
+                </p>
+                
+                <!-- Pig Emojis Animation -->
+                <div class="pig-emojis animate-fade-in delay-2">
+                    <span class="pig">🐷</span>
+                    <span class="pig">🐷</span>
+                    <span class="pig">🐷</span>
+                </div>
+                
+                <!-- Countdown Timer -->
+                <div class="countdown-container animate-fade-in delay-2">
+                    <h2 class="countdown-title">Time Until Your Special Day:</h2>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="days">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="minutes">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="seconds">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                    <p class="birthday-date" id="birthdayMessage">
+                        <!-- Will show "It's Your Birthday!" or the date -->
+                    </p>
+                </div>
+
+                <!-- Animated Cake -->
+                <div class="cake-container animate-fade-in delay-3">
+                    <div class="cake-lock-status" id="cakeLockStatus">
+                        🔒 CAKE LOCKED 🔒<br>
+                        <small>Answer all questions to unlock!</small>
+                    </div>
+                    
+                    <div class="cake" id="cake">
+                        <div class="candles">
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                        <div class="cake-layer layer-1"></div>
+                        <div class="cake-layer layer-2"></div>
+                        <div class="cake-layer layer-3"></div>
+                    </div>
+                    <p class="cake-instruction" id="cakeInstruction">Answer the questions below to unlock the cake! 🔐</p>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container animate-fade-in delay-3" id="quizContainer">
+                    <h3 class="quiz-title">💕 Answer These Questions to Unlock the Cake! 💕</h3>
+                    <p class="quiz-subtitle">These questions are about YOU and our love story!</p>
+                    
+                    <div class="quiz-questions" id="quizQuestions">
+                        <!-- Questions will be loaded here -->
+                    </div>
+                    
+                    <button id="submitQuiz" class="submit-btn" disabled>Check Answers ✨</button>
+                    <div id="quizMessage" class="quiz-message"></div>
+                    
+                    <!-- Knife Icon (shown after quiz completion) -->
+                    <div class="knife-reward" id="knifeReward" style="display: none;">
+                        <p class="knife-text">🔓 CAKE UNLOCKED! 🔓</p>
+                        <p class="knife-emoji">🔪</p>
+                        <p class="knife-message">You've earned the knife! Click the cake to cut it! 💖</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Photo Gallery -->
+        <section id="gallery" class="section gallery-section">
+            <h2 class="section-title">Our Beautiful Memories 📸</h2>
+            <p class="section-subtitle">Every moment with you is a treasure</p>
+            
+            <!-- Photo Upload Section -->
+            <div class="upload-section">
+                <h3 class="upload-title">📤 Upload Your Photos</h3>
+                <div class="upload-area" id="uploadArea">
+                    <p>Drag photos here or click to select</p>
+                    <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+                </div>
+                <div id="uploadMessage" class="upload-message"></div>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Photos will be added here dynamically -->
+            </div>
+            
+            <p class="gallery-note">
+                💡 <strong>Tip:</strong> Upload up to 12 photos! Drag & drop or click the upload area above.
+            </p>
+        </section>
+
+        <!-- Section 3: Love Letter with Typewriter Effect -->
+        <section id="letter" class="section letter-section">
+            <h2 class="section-title">A Letter From My Heart 💌</h2>
+            
+            <div class="letter-container">
+                <div class="letter-paper">
+                    <p class="letter-date">With all my love,</p>
+                    <div class="typewriter-text" id="typewriterText"></div>
+                    <p class="letter-signature">Forever yours,<br>Your Loving Husband ❤️</p>
+                </div>
+            </div>
+
+            <!-- Reply Section -->
+            <div class="reply-section">
+                <h3 class="reply-title">Write Your Reply 💕</h3>
+                <textarea 
+                    id="replyText" 
+                    class="reply-textarea" 
+                    placeholder="Write your thoughts here, my love..."
+                    rows="5"
+                ></textarea>
+                <button id="submitReply" class="submit-btn">Send My Reply ❤️</button>
+                <div id="replyMessage" class="reply-message"></div>
+            </div>
+        </section>
+
+        <!-- Section 4: Birthday Wishes -->
+        <section id="wishes" class="section wishes-section">
+            <h2 class="section-title">Birthday Wishes 🎉</h2>
+            <p class="section-subtitle">Messages filled with love</p>
+            
+            <!-- Add New Wish Form -->
+            <div class="wish-form-container">
+                <h3 class="wish-form-title">Leave a Birthday Wish</h3>
+                <input 
+                    type="text" 
+                    id="wishName" 
+                    class="wish-input" 
+                    placeholder="Your name"
+                >
+                <textarea 
+                    id="wishContent" 
+                    class="wish-textarea" 
+                    placeholder="Your birthday wish..."
+                    rows="4"
+                ></textarea>
+                <button id="submitWish" class="submit-btn">Send Wish 🎁</button>
+                <div id="wishMessage" class="wish-message"></div>
+            </div>
+
+            <!-- Display Wishes -->
+            <div class="wishes-container" id="wishesContainer">
+                <p class="loading-text">Loading wishes...</p>
+            </div>
+        </section>
+
+        <!-- Surprise Button -->
+        <div class="surprise-section">
+            <button id="surpriseBtn" class="surprise-btn">
+                🎁 Click for a Special Surprise!
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Surprise Modal -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">My Special Message For You 💖</h2>
+            <div class="modal-body">
+                <p class="surprise-text">
+                    You are the sunshine in my life, the reason I smile every day, 
+                    and the love of my life. On this special day, I want you to know 
+                    that you mean everything to me. Every moment with you is a blessing, 
+                    and I'm so grateful to have you by my side.
+                </p>
+                <p class="surprise-text">
+                    Here's to many more birthdays together, creating beautiful memories 
+                    and sharing endless love. Happy Birthday, my beautiful wife!
+                </p>
+                <!-- Optional: Add video link -->
+                <div class="video-container">
+                    <p class="video-placeholder">
+                        🎥 <strong>Add Your Video Here!</strong><br>
+                        <small>Replace this section with an embedded video or video link</small>
+                    </p>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="modalCloseBtn">Close</button>
+        </div>
+    </div>
+
+    <!-- Final Love Popup -->
+    <div id="lovePopup" class="love-popup">
+        <div class="love-popup-content">
+            <h1 class="love-popup-title">I Love You Forever ❤️</h1>
+            <p class="love-popup-text">You are my everything!</p>
+        </div>
+    </div>
+
+    <!-- Background Music (hidden audio element) -->
+    <audio id="bgMusic" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+        <!-- Add your romantic music file here -->
+        <!-- You can download free romantic music or use a URL -->
+    </audio>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
