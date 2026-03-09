@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Access Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Dancing Script', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 48px;
+            margin-bottom: 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .link-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .access-link {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .primary-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .primary-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .secondary-link {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .secondary-link:hover {
+            background: #e0e0e0;
+            border-color: #999;
+        }
+
+        .info-box {
+            background: #f9f3ff;
+            border-left: 4px solid #d63384;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            font-family: 'Poppins', sans-serif;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">💖</div>
+        <h1>Happy Birthday!</h1>
+        <p class="subtitle">Welcome to your special surprise</p>
+
+        <div class="link-section">
+            <a href="http://localhost:8000" target="_blank" class="access-link primary-link">
+                🎉 Open Birthday Surprise
+            </a>
+            <a href="http://localhost:5000" target="_blank" class="access-link secondary-link">
+                🔌 API Backend (localhost:5000)
+            </a>
+        </div>
+
+        <div class="info-box">
+            <p><strong>🌐 Frontend:</strong> http://localhost:8000</p>
+            <p><strong>⚙️ Backend:</strong> http://localhost:5000</p>
+            <p><strong>✨ Both servers are running and ready!</strong></p>
+        </div>
+    </div>
+</body>
+</html>
