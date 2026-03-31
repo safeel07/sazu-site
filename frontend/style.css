@@ -1042,6 +1042,20 @@ html {
     color: var(--text-dark);
 }
 
+.video-frame {
+    width: 100%;
+    max-width: 680px;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px var(--shadow);
+}
+
+.video-note {
+    display: block;
+    margin-top: 10px;
+    color: var(--text-light);
+}
+
 .modal-close-btn {
     background: linear-gradient(135deg, var(--primary-pink), var(--primary-red));
     color: white;

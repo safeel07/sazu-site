@@ -18,7 +18,7 @@ const LOVE_LETTER = `My Dearest Love,
 
 On this special day, I want to take a moment to tell you how much you mean to me. From the first day we met, you've brought nothing but joy, love, and happiness into my life.
 
-You are my best friend, my partner, my everything. Your smile brightens my darkest days, and your laughter is the sweetest sound I've ever heard.
+You are my partner and my everything. Your smile brightens my darkest days, and your laughter is the sweetest sound I've ever heard.
 
 Every moment spent with you is a treasure, and I am so grateful for every memory we've created together. You make me want to be a better person every single day.
 
@@ -36,29 +36,29 @@ Happy Birthday, my beautiful wife! 💖`;
 
 const QUIZ_QUESTIONS = [
     {
-        question: "What's the date of our first date?",
-        options: ["February 14, 2020", "March 15, 2020", "April 20, 2019", "May 10, 2019"],
-        correctAnswer: 1 // Index of correct answer
+        question: "How many years have we been together (approximately)?",
+        options: ["1 year", "2 years", "3 years", "5 years"],
+        correctAnswer: 1
+    },
+    {
+        question: "What is my favorite car?",
+        options: ["Bmw", "Benz", "ferrari", "Porsche"],
+        correctAnswer: 0
+    },
+    {
+        question: "What's my favorite movie genre?",
+        options: ["Action", "Romance", "Horror", "Comedy"],
+        correctAnswer: 0
+    },
+    {
+        question: "What youre thought about me ?",
+        options: ["Rude", "romance", "toxic", "protective"],
+        correctAnswer: 3
     },
     {
         question: "What's my favorite flower?",
         options: ["Rose", "Tulip", "Sunflower", "Daisy"],
         correctAnswer: 0
-    },
-    {
-        question: "What's the name of our favorite restaurant?",
-        options: ["The Italian Place", "Happy Garden", "The Love Nest", "Sweet Dreams"],
-        correctAnswer: 2
-    },
-    {
-        question: "How many years have we been together (approximately)?",
-        options: ["1 year", "2 years", "3 years", "5 years"],
-        correctAnswer: 2
-    },
-    {
-        question: "What's my favorite movie genre?",
-        options: ["Action", "Romance", "Horror", "Comedy"],
-        correctAnswer: 1
     }
 ];
 
@@ -729,16 +729,6 @@ function showDemoWishes() {
             name: 'Your Loving Husband',
             wish: 'Happy Birthday to the most amazing woman in the world! You make every day brighter and more beautiful. I love you more than words can say! 💖',
             createdAt: new Date()
-        },
-        {
-            name: 'Mom & Dad',
-            wish: 'Happy Birthday to our wonderful daughter-in-law! May your day be filled with love and happiness!',
-            createdAt: new Date(Date.now() - 3600000)
-        },
-        {
-            name: 'Best Friend',
-            wish: 'Wishing you the happiest of birthdays! You deserve all the love and joy in the world! 🎉',
-            createdAt: new Date(Date.now() - 7200000)
         }
     ];
     
