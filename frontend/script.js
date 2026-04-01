@@ -120,23 +120,114 @@ function createConfetti() {
 // BACKGROUND MUSIC PLAYER
 // =============================================
 
+const YOUTUBE_MUSIC_VIDEO_ID = 'hQTfTsO3wws';
 let isPlaying = false;
-const bgMusic = document.getElementById('bgMusic');
+let youtubePlayer = null;
+let youtubePlayerReadyPromise = null;
 const musicToggle = document.getElementById('musicToggle');
 const musicStatus = document.getElementById('musicStatus');
 
-musicToggle.addEventListener('click', () => {
-    if (isPlaying) {
-        bgMusic.pause();
-        musicStatus.textContent = 'Play Music';
-        isPlaying = false;
-    } else {
-        bgMusic.play().catch(error => {
-            console.log('Audio play failed:', error);
-            alert('Please enable audio to play background music');
+function loadYouTubeIframeApi() {
+    if (window.YT && window.YT.Player) {
+        return Promise.resolve();
+    }
+
+    return new Promise(resolve => {
+        const existingScript = document.querySelector('script[data-youtube-iframe-api="true"]');
+
+        if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = 'https://www.youtube.com/iframe_api';
+            script.async = true;
+            script.dataset.youtubeIframeApi = 'true';
+            document.head.appendChild(script);
+        }
+
+        const previousReadyHandler = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => {
+            if (typeof previousReadyHandler === 'function') {
+                previousReadyHandler();
+            }
+            resolve();
+        };
+
+        const pollForApi = setInterval(() => {
+            if (window.YT && window.YT.Player) {
+                clearInterval(pollForApi);
+                resolve();
+            }
+        }, 200);
+    });
+}
+
+function ensureYouTubePlayer() {
+    if (youtubePlayerReadyPromise) {
+        return youtubePlayerReadyPromise;
+    }
+
+    youtubePlayerReadyPromise = (async () => {
+        await loadYouTubeIframeApi();
+
+        youtubePlayer = new YT.Player('bgMusic', {
+            height: '1',
+            width: '1',
+            videoId: YOUTUBE_MUSIC_VIDEO_ID,
+            playerVars: {
+                autoplay: 0,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                modestbranding: 1,
+                rel: 0,
+                iv_load_policy: 3,
+                loop: 1,
+                playlist: YOUTUBE_MUSIC_VIDEO_ID
+            }
         });
+
+        return new Promise(resolve => {
+            const waitForPlayer = () => {
+                if (youtubePlayer && typeof youtubePlayer.playVideo === 'function') {
+                    resolve(youtubePlayer);
+                    return;
+                }
+                setTimeout(waitForPlayer, 100);
+            };
+
+            waitForPlayer();
+        });
+    })();
+
+    return youtubePlayerReadyPromise;
+}
+
+async function playBackgroundMusic() {
+    try {
+        const player = await ensureYouTubePlayer();
+        player.unMute?.();
+        player.setVolume?.(70);
+        player.playVideo();
         musicStatus.textContent = 'Pause Music';
         isPlaying = true;
+    } catch (error) {
+        console.log('YouTube music play failed:', error);
+        alert('Please tap the music button again to enable background music');
+    }
+}
+
+function pauseBackgroundMusic() {
+    if (youtubePlayer && typeof youtubePlayer.pauseVideo === 'function') {
+        youtubePlayer.pauseVideo();
+    }
+    musicStatus.textContent = 'Play Music';
+    isPlaying = false;
+}
+
+musicToggle.addEventListener('click', async () => {
+    if (isPlaying) {
+        pauseBackgroundMusic();
+    } else {
+        await playBackgroundMusic();
     }
 });
 
@@ -828,11 +919,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeQuiz();
     
     // Auto-play music after user interaction (browsers require user gesture)
-    document.body.addEventListener('click', function playMusicOnce() {
+    document.body.addEventListener('click', async function playMusicOnce() {
         if (!isPlaying) {
-            bgMusic.play().catch(err => console.log('Auto-play prevented'));
-            isPlaying = true;
-            musicStatus.textContent = 'Pause Music';
+            await playBackgroundMusic();
         }
         document.body.removeEventListener('click', playMusicOnce);
     }, { once: true });
